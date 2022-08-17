@@ -1,5 +1,6 @@
 from os import stat_result
 import string
+from typing import Union
 
 # First
 class Alphabet():
@@ -33,43 +34,85 @@ class EngAlphabet(Alphabet):
         return ('SOME ENGLISH TEXT I GUESS')
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
     
-    alp = EngAlphabet('En', string.ascii_uppercase)
-    alp.show()
-    print(alp.letter_num())
-    print(alp.is_en_letter('A'))
-    print(alp.is_en_letter('Г'))
-    print(alp.example())
+    # alp = EngAlphabet('En', string.ascii_uppercase)
+    # alp.show()
+    # print(alp.letter_num())
+    # print(alp.is_en_letter('A'))
+    # print(alp.is_en_letter('Г'))
+    # print(alp.example())
 
 
 
 # Purchase the house
 class Human():
     
-    default_name = 'No name'
-    default_age = 0
+    _default_name = 'No name'
+    _default_age = 0
     
-    def __init__(self, name=default_name, age=default_age, ):
+    def __init__(self, name=_default_name, age=_default_age, ):
         self.name = name
         self.age = age
         self.__money = 0
         self.__house = None
     
     def info(self):
-        return (f'{self.name}, {self.age}, {self._house}, {self._money}')
+        print (f'Имя: {self.name}, Возраст: {self.age}, Дом: {SmallHouse.default_name}, Деньги: {self.__money}')
     
     @staticmethod
     def default_info():
-        return (f'{Human._default.name}, {Human._default.age}')
+        print (f'Имя: {Human._default_name}, Возраст: {Human._default_age}')
     
-    def earn_money(self, salary):
+    def earn_money(self, salary: int):
         self.__money += salary
         print(f'Earned - {salary}. Total money: {self.__money}')
     
-    def buy_house(self):
-        pass
+    def buy_house(self, house, discount):
+        price = house.final_price(discount)
+        if self.__money > price:
+            self.__make_deal(house, price)
+        else:
+            print('Not enough money')
 
     def __make_deal(self, house, price):
         self.__money -= price
         self.__house = house
+
+
+class House():
+    def __init__(self, _area: int, _price: int, _name: str) -> Union[int, str]:
+        self._area = _area
+        self._price = _price
+        self._name = _name
+    
+    def final_price(self, discount):
+        final_price = self._price * (100 - discount) / 100
+        return final_price
+
+
+class SmallHouse(House):
+    
+    default_area = 40
+    default_price = 1000
+    default_name = 'Tiny house'
+    
+    def __init__(self):
+        super().__init__(
+            SmallHouse.default_area,
+            SmallHouse.default_price,
+            SmallHouse.default_name)
+
+
+if __name__ == '__main__':
+    Human.default_info()
+    
+    pasha = Human('Pasha', 25)
+    pasha.info()
+    
+    tiny_house = SmallHouse()
+    
+    pasha.buy_house(tiny_house, 1)
+    pasha.earn_money(1500)
+    pasha.buy_house(tiny_house, 1)
+    pasha.info()
