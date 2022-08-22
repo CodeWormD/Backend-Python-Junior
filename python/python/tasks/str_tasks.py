@@ -41,7 +41,15 @@ listr = [1, 1, 1, 2, 3, 3, 4, 5, 6]
 first = len(listr)
 second = len(set(listr))
 
-print(first, second)
+
+# split()
+mystr = 'My name is Steve'
+so = mystr.split()
+
+
+# join()
+str1 = ['My code is', '123 123 123']
+full = ' '.join(str1)
 
 
 
