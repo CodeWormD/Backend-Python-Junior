@@ -211,5 +211,232 @@ def order(sentence):
         c.append(di[key])
     print(' '.join(c))
 
-order("is2 Thi1s T4est 3a")
-order("4of Fo1r pe6ople g3ood th5e the2")
+# order("is2 Thi1s T4est 3a")
+# order("4of Fo1r pe6ople g3ood th5e the2")
+
+
+def get_count(sentence):
+    total = [ b for b in sentence if b in 'aeiou']
+    print(len(total))
+
+# get_count("abracdabra")
+# get_count("ou")
+
+
+
+def disemvowel(string_):
+    result = []
+    for i in string_:
+        if i not in 'AEIOUYaeiouy':
+            result.append(i)
+    print(''.join(result))
+# disemvowel("This website is for losers LOL!")
+
+
+def square_digits(num):
+    ls = []
+    for i in str(num):
+        inn = int(i) * int(i)
+        ls.append(int(inn))
+    print(int(''.join(map(str, ls))))
+    print(int(''.join(map(str, [int(i)*int(i) for i in str(num)]))))
+# square_digits(9119)
+
+
+
+def high_and_low(numbers):
+    ls = []
+    for i in numbers.split(' '):
+        if i == ' ':
+            i == ''
+        else:
+            ls.append(int(i))
+    neww = sorted(ls)
+    print(f'{neww[-1]} {neww[0]}')
+
+
+# high_and_low("8 3 -5 42 -1 0 0 -9 4 7 4 -4")
+
+
+
+def descending_order(num):
+    lett = str(num).split(' ')
+    ls = []
+    for i in lett:
+        for b in i:
+            ls.append(b)
+    c = sorted(ls, reverse=True)
+    x = int((''.join(i for i in c)))
+    print((x))
+
+def Descending_Order(num):
+    print(int("".join(sorted(str(num), reverse=True))))
+
+# descending_order(153)
+# Descending_Order(15367)
+
+
+
+def accum(s):
+    ls = []
+    c = 0
+    for i in s:
+        cc = i.upper()
+        d = i * c
+        c += 1
+        ls.append(cc+d.lower())
+    print('-'.join(ls))
+
+# accum("ZglnRxQ")
+
+
+def is_square(n):
+    import math as m
+    if n < 0:
+        return False
+    sq = m.isqrt(n)
+    if n == sq * sq:
+        print(True)
+    else:
+        print(False)
+
+
+# is_square(25)
+# is_square(-1)
+# is_square(26)
+
+
+def filter_list(l):
+    print([i for i in l if isinstance(i, int)])
+# filter_list([1, 2, 'a', 'b'])
+
+
+
+def xo(s):
+    if s.count('o') == s.count('x'):
+        print(True)
+    elif s.count('o') == 0 and s.count('x') == 0:
+        print(True)
+    else:
+        print(False)
+# xo('xo')
+# xo('xxxoo')
+# xo('123123qwe')
+
+
+
+def to_jaden_case(string):
+    print(' '.join([i.capitalize() for i in string.split(' ')]))
+quote = "How can mirrors be real if our eyes aren't real"
+# to_jaden_case(quote)
+
+
+
+
+def sum_two_smallest_numbers(numbers):
+    ls = []
+    for i in sorted(numbers):
+        ls.append(i)
+    print(ls[0] + ls[1])
+    print(sorted(numbers)[0] + sorted(numbers)[1])
+# sum_two_smallest_numbers([5, 8, 12, 18, 22])
+
+
+
+def get_sum(a,b):
+    if a > b:
+        a,b = b, a
+    c = 0
+    for i in range(a,b+1):
+        c += i
+    print(c)
+# get_sum(-1, 2)
+
+
+
+
+def longest(a1, a2):
+    a = [set(a1), set(a2)]
+    bb = set()
+    c = ''
+    for i in a:
+        for b in i:
+            bb.add(b)
+    print(''.join(sorted(str(i) for i in bb)))
+
+# longest("aretheyhere", "yestheyarehere")
+
+
+
+def friend(x):
+    print([i for i in x if len(i) == 4])
+# friend(["Ryan", "Kieran", "Mark",])
+
+
+
+def open_or_senior(data):
+    ls = []
+    for i in data:
+        if i[0] >= 55 and i[1] >= 7:
+            ls.append('Senior')
+        else:
+            ls.append('Open')
+    print(ls)
+
+# open_or_senior([(45, 12),(55,21),(19, -2),(104, 20)])
+
+
+
+def nb_year(p0, percent, aug, p):
+    c = p0
+    year = 0
+    while c <= p:
+        c = (c + c * percent/100 + aug)
+        year += 1
+    print(year)
+
+
+# nb_year(1500, 5, 100, 5000)
+
+
+
+def validate_pin(pin):
+    ls = []
+    ls2 = []
+    b = [i for i in '1234567890']
+    for i in pin:
+        if i not in b:
+            ls2.append(i)
+        else:
+            ls.append(i)
+    if len(ls2) > 0:
+        print(False)
+    elif len(ls) == 4 or len(ls) == 6:
+        print(True)
+    else:
+        print(False)
+# validate_pin("-1234")
+# validate_pin("11q234")
+
+
+
+def number(bus_stops):
+    ls_in = []
+    ls_out = []
+    for x in bus_stops:
+        ls_in.append(x[0])
+        ls_out.append(x[1])
+    print(sum(ls_in) - sum(ls_out))
+    print(sum([x[0] - x[1] for x in bus_stops]))
+
+# number([[10,0],[3,5],[5,8]])
+
+
+
+def solution(string, ending):
+    print(True if string[-len(ending)::] == ending else False)
+    print(string.endswith(ending))
+
+
+solution('abcde', 'cde')
+solution('abcde', 'ce')
